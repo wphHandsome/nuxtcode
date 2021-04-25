@@ -6,7 +6,7 @@
 
         <h1>{{ article.title }}</h1>
 
-        <article-meta :article="article" />
+        <ArticleMeta :article="article" @click="articleClick"/>
 
       </div>
     </div>
@@ -20,14 +20,14 @@
       <hr />
 
       <div class="article-actions">
-        <article-meta :article="article" />
+        <ArticleMeta :article="article" @click="articleClick"/>
       </div>
 
       <div class="row">
 
         <div class="col-xs-12 col-md-8 offset-md-2">
 
-          <article-comments :article="article" />
+          <ArticleComments :article="article" />
 
         </div>
 
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import { getArticle } from '@/api/article'
+import { getArticle,unFollowUser,followUser,deleteFavorite,addFavorite,deleteArticle} from '@/api/article'
 import MarkdownIt from 'markdown-it'
 import ArticleMeta from './components/article-meta'
 import ArticleComments from './components/article-comments'
@@ -66,6 +66,30 @@ export default {
       meta: [
         { hid: 'description', name: 'description', content: this.article.description }
       ]
+    }
+  },
+    methods: {
+    async articleClick (val) {
+      if (val.type === 1) {
+        if (this.article.author.following) {
+          await unFollowUser(val.data)
+        } else {
+          await followUser(val.data)
+        }
+        this.article.author.following = !this.article.author.following
+      } else if (val.type === 2) {
+        if (this.article.favorited) {
+          await deleteFavorite(val.data)
+          this.article.favoritesCount --
+        } else {
+          await addFavorite(val.data)
+          this.article.favoritesCount ++
+        }
+        this.article.favorited = !this.article.favorited
+      } else if (val.type === 3) {
+        await deleteArticle(val.data)
+        this.$router.push({name: 'home', query: {tab: 'your_feed'}})
+      }
     }
   }
 }

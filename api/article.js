@@ -103,3 +103,30 @@ export const unFollowUser = username => {
       url: `/api/profiles/${username}/follow`
   })
 }
+
+
+// 编辑文章
+export const editArticle = params => {
+  return request({
+      method: 'PUT',
+      url: `/api/articles/${params.slug}`,
+      data: params.data
+  })
+}
+
+// 发表文章
+export const publishArticle = data => {
+  return request({
+      method: 'POST',
+      url: '/api/articles',
+      data
+  })
+}
+
+// 删除文章
+export const deleteArticle = slug => {
+  return request({
+      method: 'DELETE',
+      url: `/api/articles/${slug}`
+  })
+}

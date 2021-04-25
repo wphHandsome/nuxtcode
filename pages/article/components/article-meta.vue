@@ -37,6 +37,7 @@ export default {
     },
     methods: {
         articleClick (type) {
+            console.log('1111')
             let val = {
                 type: type,
                 data: ''
