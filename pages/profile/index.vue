@@ -11,7 +11,7 @@
             <p>
               Cofounder @GoThinkster, lived in Aol's HQ for a few months, kinda looks like Peeta from the Hunger Games
             </p>
-            <button class="btn btn-sm btn-outline-secondary action-btn" @click="Onsettings">
+            <button class="btn btn-sm btn-outline-secondary action-btn">
               <i class="ion-plus-round"></i>
               &nbsp;
               Follow Eric Simons
@@ -89,12 +89,7 @@
 <script>
 export default {
   middleware: 'authenticated',
-  name: 'UserProfile',
-  methods: {
-    Onsettings(){
-      this.$router.push({path:'/settings'})
-    }
-  }
+  name: 'UserProfile'
 }
 </script>
 

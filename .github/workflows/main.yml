@@ -53,7 +53,7 @@ jobs:
         password: ${{ secrets.PASSWORD }}
         port: ${{ secrets.PORT }}
         script: |
-          cd /root/wph/nuxt
+          cd /home
           wget https://github.com/wangpenghe666/nuxtcode/releases/download/release.tgz -O release.tgz
           tar zxvf release.tgz
           npm install --production

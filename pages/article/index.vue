@@ -55,6 +55,7 @@ export default {
       article
     }
   },
+  
   components: {
     ArticleMeta,
     ArticleComments
