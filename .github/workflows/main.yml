@@ -54,7 +54,7 @@ jobs:
         port: ${{ secrets.PORT }}
         script: |
           cd /home
-          wget https://github.com/wangpenghe666/nuxtcode/releases/download/release.tgz -O release.tgz
+          wget https://github.com/wangpenghe666/nuxtcode/releases/tag/v0.1.1/release.tgz -O release.tgz
           tar zxvf release.tgz
           npm install --production
           pm2 reload pm2.config.json
